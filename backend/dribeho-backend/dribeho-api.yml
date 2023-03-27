@@ -33,8 +33,9 @@ components:
         id:
           type: string
           format: uuid
-        coffeeShopId:
+        cafeId:
           type: string
+          format: uuid
         rating:
           type: integer
         comment:
