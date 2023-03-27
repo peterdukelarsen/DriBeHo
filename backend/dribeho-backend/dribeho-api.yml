@@ -1,23 +1,25 @@
-openapi: 3.1.0
+openapi: "3.0.3"
 info:
   title: DriBeHo API
   version: 1.0.0
 components:
   schemas:
     Cafe:
-      id:
-        type: string
-        format: uuid
-      name:
-        type: string
-      address:
-        type: string
-      city:
-        type: string
-      state:
-        type: string
-      zipcode:
-        type: string
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipcode:
+          type: string
       required:
         - id
         - name
@@ -66,14 +68,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CoffeeShop'
+              $ref: '#/components/schemas/Cafe'
       responses:
         '201':
           description: Created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CoffeeShop'
+                $ref: '#/components/schemas/Cafe'
   /reviews:
     get:
       summary: Get reviews for a cafe
@@ -95,8 +97,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Review'
-        '404':
-          $ref: '#/components/responses/NotFound'
     post:
       summary: Create a new review
       requestBody:
