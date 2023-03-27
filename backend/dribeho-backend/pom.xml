@@ -65,6 +65,7 @@
                                 <dateLibrary>java8</dateLibrary>
                                 <useSwaggerAnnotations>false</useSwaggerAnnotations>
                                 <interfaceOnly>true</interfaceOnly>
+                                <generateBuilders>true</generateBuilders>
                             </configOptions>
                             <apiPackage>com.dribeho.api</apiPackage>
                             <modelPackage>com.dribeho.beans</modelPackage>

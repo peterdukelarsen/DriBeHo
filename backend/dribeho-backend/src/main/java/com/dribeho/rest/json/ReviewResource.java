@@ -1,5 +1,8 @@
 package com.dribeho.rest.json;
 
+import com.dribeho.api.ReviewsApi;
+import com.dribeho.beans.Review;
+
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -7,28 +10,23 @@ import javax.ws.rs.Path;
 import java.util.*;
 
 @Path("/reviews")
-public class ReviewResource {
-    private Map<String, Set<Review>> cafesToReviews = Collections.synchronizedMap(new LinkedHashMap<>());
+public class ReviewResource implements ReviewsApi {
+    private Map<UUID, Map<UUID, Review>> cafesToReviews = Collections.synchronizedMap(new LinkedHashMap<>());
+
     public ReviewResource() {
     }
-    @GET
-    @Path("/{cafe}")
-    public Set<Review> listReviewsForCafe(String cafe) {
-        return cafesToReviews.get(cafe);
+
+    @Override
+    public List<Review> reviewsGet(UUID cafeId) {
+        return new ArrayList<>(cafesToReviews.getOrDefault(cafeId, Collections.emptyMap()).values());
     }
 
-    @POST
-    public void add(Review review) {
-        if (!cafesToReviews.containsKey(review.cafeName)) {
-            cafesToReviews.put(review.cafeName, new HashSet<>());
+    @Override
+    public Review reviewsPost(Review review) {
+        if (!cafesToReviews.containsKey(review.getCafeId())) {
+            cafesToReviews.put(review.getCafeId(), Collections.synchronizedMap(new LinkedHashMap<>()));
         }
-        cafesToReviews.get(review.cafeName).add(review);
-    }
-
-    @DELETE
-    public void delete(Review review) {
-        Optional.ofNullable(cafesToReviews.get(review.cafeName))
-                .ifPresent(reviews -> reviews
-                        .removeIf(existingReview -> existingReview.title.contentEquals(review.title)));
+        cafesToReviews.get(review.getCafeId()).put(review.getId(), review);
+        return review;
     }
 }
