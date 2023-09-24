@@ -8,11 +8,13 @@ import com.dribeho.database.jooq.Dribehodb;
 import com.dribeho.database.jooq.Keys;
 import com.dribeho.database.jooq.tables.records.CafesRecord;
 
+import java.math.BigDecimal;
+
 import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row6;
+import org.jooq.Row8;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -73,6 +75,16 @@ public class Cafes extends TableImpl<CafesRecord> {
      * The column <code>dribehodb.cafes.zipcode</code>.
      */
     public final TableField<CafesRecord, String> ZIPCODE = createField(DSL.name("zipcode"), SQLDataType.VARCHAR(5).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+
+    /**
+     * The column <code>dribehodb.cafes.longitude</code>.
+     */
+    public final TableField<CafesRecord, BigDecimal> LONGITUDE = createField(DSL.name("longitude"), SQLDataType.DECIMAL(10, 6).defaultValue(DSL.field("NULL", SQLDataType.DECIMAL)), this, "");
+
+    /**
+     * The column <code>dribehodb.cafes.latitude</code>.
+     */
+    public final TableField<CafesRecord, BigDecimal> LATITUDE = createField(DSL.name("latitude"), SQLDataType.DECIMAL(10, 6).defaultValue(DSL.field("NULL", SQLDataType.DECIMAL)), this, "");
 
     private Cafes(Name alias, Table<CafesRecord> aliased) {
         this(alias, aliased, null);
@@ -144,11 +156,11 @@ public class Cafes extends TableImpl<CafesRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row6 type methods
+    // Row8 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row6<String, String, String, String, String, String> fieldsRow() {
-        return (Row6) super.fieldsRow();
+    public Row8<String, String, String, String, String, String, BigDecimal, BigDecimal> fieldsRow() {
+        return (Row8) super.fieldsRow();
     }
 }

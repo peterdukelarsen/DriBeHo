@@ -6,7 +6,10 @@ package com.dribeho.database.jooq;
 
 import com.dribeho.database.jooq.tables.Cafes;
 import com.dribeho.database.jooq.tables.FlywaySchemaHistory;
+import com.dribeho.database.jooq.tables.Images;
 import com.dribeho.database.jooq.tables.Quarkus;
+import com.dribeho.database.jooq.tables.Reviews;
+import com.dribeho.database.jooq.tables.Users;
 
 import java.util.Arrays;
 import java.util.List;
@@ -40,9 +43,24 @@ public class Dribehodb extends SchemaImpl {
     public final FlywaySchemaHistory FLYWAY_SCHEMA_HISTORY = FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY;
 
     /**
+     * The table <code>dribehodb.images</code>.
+     */
+    public final Images IMAGES = Images.IMAGES;
+
+    /**
      * The table <code>dribehodb.quarkus</code>.
      */
     public final Quarkus QUARKUS = Quarkus.QUARKUS;
+
+    /**
+     * The table <code>dribehodb.reviews</code>.
+     */
+    public final Reviews REVIEWS = Reviews.REVIEWS;
+
+    /**
+     * The table <code>dribehodb.users</code>.
+     */
+    public final Users USERS = Users.USERS;
 
     /**
      * No further instances allowed
@@ -62,7 +80,10 @@ public class Dribehodb extends SchemaImpl {
         return Arrays.asList(
             Cafes.CAFES,
             FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY,
-            Quarkus.QUARKUS
+            Images.IMAGES,
+            Quarkus.QUARKUS,
+            Reviews.REVIEWS,
+            Users.USERS
         );
     }
 }

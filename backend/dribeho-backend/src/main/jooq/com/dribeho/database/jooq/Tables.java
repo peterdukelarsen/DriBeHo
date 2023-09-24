@@ -6,7 +6,10 @@ package com.dribeho.database.jooq;
 
 import com.dribeho.database.jooq.tables.Cafes;
 import com.dribeho.database.jooq.tables.FlywaySchemaHistory;
+import com.dribeho.database.jooq.tables.Images;
 import com.dribeho.database.jooq.tables.Quarkus;
+import com.dribeho.database.jooq.tables.Reviews;
+import com.dribeho.database.jooq.tables.Users;
 
 
 /**
@@ -26,7 +29,22 @@ public class Tables {
     public static final FlywaySchemaHistory FLYWAY_SCHEMA_HISTORY = FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY;
 
     /**
+     * The table <code>dribehodb.images</code>.
+     */
+    public static final Images IMAGES = Images.IMAGES;
+
+    /**
      * The table <code>dribehodb.quarkus</code>.
      */
     public static final Quarkus QUARKUS = Quarkus.QUARKUS;
+
+    /**
+     * The table <code>dribehodb.reviews</code>.
+     */
+    public static final Reviews REVIEWS = Reviews.REVIEWS;
+
+    /**
+     * The table <code>dribehodb.users</code>.
+     */
+    public static final Users USERS = Users.USERS;
 }

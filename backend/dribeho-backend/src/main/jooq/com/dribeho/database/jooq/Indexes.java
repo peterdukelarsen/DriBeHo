@@ -5,6 +5,8 @@ package com.dribeho.database.jooq;
 
 
 import com.dribeho.database.jooq.tables.FlywaySchemaHistory;
+import com.dribeho.database.jooq.tables.Images;
+import com.dribeho.database.jooq.tables.Reviews;
 
 import org.jooq.Index;
 import org.jooq.OrderField;
@@ -23,4 +25,8 @@ public class Indexes {
     // -------------------------------------------------------------------------
 
     public static final Index FLYWAY_SCHEMA_HISTORY_FLYWAY_SCHEMA_HISTORY_S_IDX = Internal.createIndex(DSL.name("flyway_schema_history_s_idx"), FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY, new OrderField[] { FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY.SUCCESS }, false);
+    public static final Index IMAGES_SHOP_ID = Internal.createIndex(DSL.name("shop_id"), Images.IMAGES, new OrderField[] { Images.IMAGES.SHOP_ID }, false);
+    public static final Index REVIEWS_SHOP_ID = Internal.createIndex(DSL.name("shop_id"), Reviews.REVIEWS, new OrderField[] { Reviews.REVIEWS.SHOP_ID }, false);
+    public static final Index IMAGES_USER_ID = Internal.createIndex(DSL.name("user_id"), Images.IMAGES, new OrderField[] { Images.IMAGES.USER_ID }, false);
+    public static final Index REVIEWS_USER_ID = Internal.createIndex(DSL.name("user_id"), Reviews.REVIEWS, new OrderField[] { Reviews.REVIEWS.USER_ID }, false);
 }

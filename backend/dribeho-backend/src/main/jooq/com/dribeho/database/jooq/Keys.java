@@ -6,9 +6,16 @@ package com.dribeho.database.jooq;
 
 import com.dribeho.database.jooq.tables.Cafes;
 import com.dribeho.database.jooq.tables.FlywaySchemaHistory;
+import com.dribeho.database.jooq.tables.Images;
+import com.dribeho.database.jooq.tables.Reviews;
+import com.dribeho.database.jooq.tables.Users;
 import com.dribeho.database.jooq.tables.records.CafesRecord;
 import com.dribeho.database.jooq.tables.records.FlywaySchemaHistoryRecord;
+import com.dribeho.database.jooq.tables.records.ImagesRecord;
+import com.dribeho.database.jooq.tables.records.ReviewsRecord;
+import com.dribeho.database.jooq.tables.records.UsersRecord;
 
+import org.jooq.ForeignKey;
 import org.jooq.TableField;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
@@ -28,4 +35,17 @@ public class Keys {
 
     public static final UniqueKey<CafesRecord> KEY_CAFES_PRIMARY = Internal.createUniqueKey(Cafes.CAFES, DSL.name("KEY_cafes_PRIMARY"), new TableField[] { Cafes.CAFES.ID }, true);
     public static final UniqueKey<FlywaySchemaHistoryRecord> KEY_FLYWAY_SCHEMA_HISTORY_PRIMARY = Internal.createUniqueKey(FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY, DSL.name("KEY_flyway_schema_history_PRIMARY"), new TableField[] { FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY.INSTALLED_RANK }, true);
+    public static final UniqueKey<ImagesRecord> KEY_IMAGES_PRIMARY = Internal.createUniqueKey(Images.IMAGES, DSL.name("KEY_images_PRIMARY"), new TableField[] { Images.IMAGES.ID }, true);
+    public static final UniqueKey<ReviewsRecord> KEY_REVIEWS_PRIMARY = Internal.createUniqueKey(Reviews.REVIEWS, DSL.name("KEY_reviews_PRIMARY"), new TableField[] { Reviews.REVIEWS.ID }, true);
+    public static final UniqueKey<UsersRecord> KEY_USERS_EMAIL = Internal.createUniqueKey(Users.USERS, DSL.name("KEY_users_email"), new TableField[] { Users.USERS.EMAIL }, true);
+    public static final UniqueKey<UsersRecord> KEY_USERS_PRIMARY = Internal.createUniqueKey(Users.USERS, DSL.name("KEY_users_PRIMARY"), new TableField[] { Users.USERS.ID }, true);
+
+    // -------------------------------------------------------------------------
+    // FOREIGN KEY definitions
+    // -------------------------------------------------------------------------
+
+    public static final ForeignKey<ImagesRecord, CafesRecord> IMAGES_IBFK_1 = Internal.createForeignKey(Images.IMAGES, DSL.name("images_ibfk_1"), new TableField[] { Images.IMAGES.SHOP_ID }, Keys.KEY_CAFES_PRIMARY, new TableField[] { Cafes.CAFES.ID }, true);
+    public static final ForeignKey<ImagesRecord, UsersRecord> IMAGES_IBFK_2 = Internal.createForeignKey(Images.IMAGES, DSL.name("images_ibfk_2"), new TableField[] { Images.IMAGES.USER_ID }, Keys.KEY_USERS_PRIMARY, new TableField[] { Users.USERS.ID }, true);
+    public static final ForeignKey<ReviewsRecord, UsersRecord> REVIEWS_IBFK_1 = Internal.createForeignKey(Reviews.REVIEWS, DSL.name("reviews_ibfk_1"), new TableField[] { Reviews.REVIEWS.USER_ID }, Keys.KEY_USERS_PRIMARY, new TableField[] { Users.USERS.ID }, true);
+    public static final ForeignKey<ReviewsRecord, CafesRecord> REVIEWS_IBFK_2 = Internal.createForeignKey(Reviews.REVIEWS, DSL.name("reviews_ibfk_2"), new TableField[] { Reviews.REVIEWS.SHOP_ID }, Keys.KEY_CAFES_PRIMARY, new TableField[] { Cafes.CAFES.ID }, true);
 }
