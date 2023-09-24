@@ -55,8 +55,10 @@ If you want to learn more about Quarkus, please visit its website: https://quark
 You can run your application in dev mode that enables live coding using:
 
 ```shell script
-./mvnw compile quarkus:dev
+TESTCONTAINERS_RYUK_DISABLED=true ./mvnw compile quarkus:dev
 ```
+
+I need to disable RYUK to get my local dev environment working.
 
 > **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
 
