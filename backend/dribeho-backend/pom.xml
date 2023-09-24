@@ -317,8 +317,8 @@
                         <configuration>
                             <jdbc>
                                 <url>${flyway.url}</url>
-                                <user>plarsen</user>
-                                <password>plarsen</password>
+                                <user>${flyway.user}</user>
+                                <password>${flyway.password}</password>
                                 <schema>dribehodb</schema>
                             </jdbc>
                             <generator>
